@@ -248,6 +248,7 @@ class FlvLiveTests(LiveStreamTestCase):
             self.assertTrue(event.result.live)
             self.assertTrue(event.result.supported)
             self.assertEqual(event.result.protocol, "flv")
+            self.assertIn("video/x-flv", event.result.content_type)
         finally:
             server.stop()
 

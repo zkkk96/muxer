@@ -233,8 +233,10 @@ class FlvStreamServer:
             protocol_version = "HTTP/1.0"
 
             def do_HEAD(self) -> None:  # noqa: N802
+                # 模拟 ZLMediaKit：HEAD 返回 200 + Content-Length: 0，GET 才是持续流
                 self.send_response(200)
                 self.send_header("Content-Type", "video/x-flv")
+                self.send_header("Content-Length", "0")
                 self.end_headers()
 
             def do_GET(self) -> None:  # noqa: N802

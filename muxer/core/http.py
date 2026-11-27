@@ -144,7 +144,9 @@ class HttpClient:
         response = await self._request("HEAD", url, merged)
         try:
             length = _content_length(response)
-            if response.status >= 400 or length is None:
+            # 有些直播服务（如 ZLMediaKit）对 HEAD 返回 200 + Content-Length: 0，
+            # 但真正的 GET 是无长度的持续流；0 视为未知，回退到 GET 再判断
+            if response.status >= 400 or length is None or length == 0:
                 response.release()
                 response = await self._request("GET", url, {**merged, "Range": "bytes=0-0"})
                 length = _content_length(response)

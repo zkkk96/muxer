@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 
 from muxer.core.http import HttpClient, HttpError, describe_http_status
-from tests.http_fixture import StaticServer
+from tests.http_fixture import FlvStreamServer, StaticServer
 
 
 class HttpStatusMessageTests(unittest.TestCase):
@@ -20,6 +20,24 @@ class HttpStatusMessageTests(unittest.TestCase):
 
     def test_unknown_status(self) -> None:
         self.assertEqual(describe_http_status(418), "HTTP 418")
+
+
+class HeadZeroLengthTests(unittest.IsolatedAsyncioTestCase):
+    """HEAD 返回 Content-Length: 0 的直播服务应回退 GET 并识别为直播。"""
+
+    async def test_probe_falls_back_to_get(self) -> None:
+        server = FlvStreamServer(b"flv" * 1024)
+        server.start()
+        http = HttpClient(retries=0, read_timeout=5)
+        await http.start()
+        try:
+            info = await http.probe(server.url())
+            self.assertEqual(info.protocol, "flv")
+            self.assertIsNone(info.content_length)
+            self.assertIn("video/x-flv", info.content_type)
+        finally:
+            await http.close()
+            server.stop()
 
 
 class ProbeFailureTests(unittest.IsolatedAsyncioTestCase):
