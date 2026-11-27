@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "muxer"
+version = "0.8.0"
+description = "流媒体下载器：HLS / DASH / FLV，Claude Desktop 风格桌面界面"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "PySide6>=6.8,<6.11",
+    "aiohttp>=3.10",
+    "cryptography>=42",
+    "pydantic>=2.7",
+    "SQLAlchemy>=2.0",
+    "psutil>=5.9",
+]
+
+[project.optional-dependencies]
+sniffer = ["PySide6-Addons>=6.8,<6.11"]
+build = ["pyinstaller>=6.10"]
+
+[project.gui-scripts]
+muxer = "muxer.app:main"
+
+[tool.setuptools.packages.find]
+include = ["muxer*"]
+
+[tool.setuptools.package-data]
+muxer = ["assets/**/*", "ui/theme/qss/*.qss"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

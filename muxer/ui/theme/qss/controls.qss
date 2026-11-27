@@ -1,0 +1,226 @@
+/* 按钮、输入框、下拉框、分段控件、标题栏按钮 */
+
+QPushButton {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+    padding: 7px 14px;
+    color: {{text}};
+}
+
+QPushButton:hover {
+    background: {{surface_muted}};
+    border-color: {{border_strong}};
+}
+
+QPushButton:pressed {
+    background: {{border}};
+}
+
+QPushButton:disabled {
+    color: {{text_tertiary}};
+    background: {{surface_muted}};
+    border-color: {{border}};
+}
+
+QPushButton#primaryButton {
+    background: {{accent}};
+    border: 1px solid {{accent}};
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 8px 18px;
+}
+
+QPushButton#primaryButton:hover {
+    background: {{accent_hover}};
+    border-color: {{accent_hover}};
+}
+
+QPushButton#primaryButton:pressed {
+    background: {{accent_hover}};
+}
+
+QPushButton#primaryButton:disabled {
+    background: {{border_strong}};
+    border-color: {{border_strong}};
+    color: {{surface}};
+}
+
+QPushButton#ghostButton {
+    background: transparent;
+    border: none;
+    color: {{text_secondary}};
+    padding: 5px 8px;
+    font-size: {{fs_caption}}px;
+    border-radius: {{radius_sm}}px;
+}
+
+QPushButton#ghostButton:hover {
+    background: {{surface_muted}};
+    color: {{text}};
+}
+
+QPushButton#ghostButton:pressed {
+    background: {{border}};
+}
+
+QToolButton#iconButton {
+    background: transparent;
+    border: none;
+    border-radius: {{radius_sm}}px;
+    padding: 4px;
+}
+
+QToolButton#iconButton:hover {
+    background: {{surface_muted}};
+}
+
+QLineEdit,
+QComboBox,
+QSpinBox {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+    padding: 6px 10px;
+    min-height: 20px;
+    color: {{text}};
+}
+
+QLineEdit:hover,
+QComboBox:hover,
+QSpinBox:hover {
+    border-color: {{border_strong}};
+}
+
+QLineEdit:focus,
+QComboBox:focus,
+QSpinBox:focus {
+    border-color: {{accent}};
+}
+
+QLineEdit:disabled {
+    color: {{text_tertiary}};
+    background: {{surface_muted}};
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 26px;
+}
+
+QComboBox::down-arrow {
+    image: url("{{icon_chevron}}");
+    width: 14px;
+    height: 14px;
+}
+
+QComboBox QAbstractItemView {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+    padding: 4px;
+    outline: none;
+    selection-background-color: {{accent_soft}};
+    selection-color: {{text}};
+}
+
+QSpinBox::up-button,
+QSpinBox::down-button {
+    width: 16px;
+    background: transparent;
+    border: none;
+}
+
+QCheckBox {
+    spacing: 8px;
+    color: {{text}};
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid {{border_strong}};
+    border-radius: 4px;
+    background: {{surface}};
+}
+
+QCheckBox::indicator:hover {
+    border-color: {{accent}};
+}
+
+QCheckBox::indicator:checked {
+    background: {{accent}};
+    border-color: {{accent}};
+    image: url("{{icon_check}}");
+}
+
+QCheckBox::indicator:disabled {
+    background: {{surface_muted}};
+    border-color: {{border}};
+}
+
+QPlainTextEdit#logText {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+    padding: 8px;
+    color: {{text}};
+    font-family: "{{font_mono}}";
+    font-size: {{fs_caption}}px;
+    selection-background-color: {{accent}};
+    selection-color: #FFFFFF;
+}
+
+QFrame#divider {
+    background: {{border}};
+    border: none;
+    max-height: 1px;
+    min-height: 1px;
+}
+
+QFrame#segmented {
+    background: {{surface_muted}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+}
+
+QPushButton#segmentButton {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: {{radius_sm}}px;
+    padding: 5px 12px;
+    color: {{text_secondary}};
+    font-size: {{fs_caption}}px;
+}
+
+QPushButton#segmentButton:hover {
+    color: {{text}};
+}
+
+QPushButton#segmentButton:checked {
+    background: {{surface}};
+    border-color: {{border}};
+    color: {{text}};
+}
+
+QToolButton#titleButton {
+    background: transparent;
+    border: none;
+    border-radius: {{radius_sm}}px;
+    padding: 5px;
+}
+
+QToolButton#titleButton:hover {
+    background: {{surface_muted}};
+}
+
+QToolButton#closeButton {
+    background: transparent;
+    border: none;
+    border-radius: {{radius_sm}}px;
+    padding: 5px;
+}
+
+QToolButton#closeButton:hover {
+    background: {{danger}};
+}

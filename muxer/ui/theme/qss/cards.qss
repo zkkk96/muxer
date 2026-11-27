@@ -1,0 +1,93 @@
+/* 卡片：输入卡、媒体信息卡、任务卡、历史行、设置分区 */
+
+QFrame#card {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_lg}}px;
+}
+
+QFrame#card:hover {
+    border-color: {{border_strong}};
+}
+
+QFrame#inputCard {
+    background: {{surface}};
+    border: 1px solid {{border_strong}};
+    border-radius: {{radius_lg}}px;
+}
+
+QTextEdit#urlInput {
+    background: transparent;
+    border: none;
+    color: {{text}};
+    font-size: 15px;
+    selection-background-color: {{accent}};
+    selection-color: #FFFFFF;
+}
+
+QLabel#inputHint {
+    color: {{text_tertiary}};
+    font-size: {{fs_caption}}px;
+}
+
+QFrame#thumbnail {
+    background: {{accent_soft}};
+    border: none;
+    border-radius: {{radius_md}}px;
+}
+
+QFrame#historyRow {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid {{border}};
+}
+
+QFrame#historyRow:hover {
+    background: {{surface_muted}};
+}
+
+QFrame#settingsSection {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_lg}}px;
+}
+
+QFrame#sniffBar {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+}
+
+QFrame#sniffDrawer {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_lg}}px;
+}
+
+QFrame#toast {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_lg}}px;
+}
+
+QLabel#toastText {
+    color: {{text}};
+    font-size: {{fs_body}}px;
+}
+
+QLabel#emptyTitle {
+    font-size: {{fs_title}}px;
+    font-weight: 600;
+    color: {{text}};
+}
+
+QLabel#emptySubtitle {
+    color: {{text_secondary}};
+    font-size: {{fs_body}}px;
+}
+
+QFrame#emptyIcon {
+    background: {{accent_soft}};
+    border: none;
+    border-radius: 36px;
+}

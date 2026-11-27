@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.idea/
+tasks/
+*.log
+
+# 可选内置 ffmpeg 与打包日志
+/vendor/ffmpeg/bin/
+/build_log*.txt

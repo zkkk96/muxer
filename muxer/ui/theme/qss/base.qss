@@ -1,0 +1,142 @@
+/* 基础排版、窗口容器、滚动条、提示气泡 */
+
+QWidget {
+    color: {{text}};
+    font-family: "{{font_sans}}";
+    font-size: {{fs_body}}px;
+}
+
+QDialog {
+    background-color: {{bg}};
+}
+
+QMenu {
+    background: {{surface}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_md}}px;
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 6px 18px;
+    border-radius: {{radius_sm}}px;
+    color: {{text}};
+}
+
+QMenu::item:selected {
+    background: {{accent_soft}};
+    color: {{text}};
+}
+
+QMenu::separator {
+    height: 1px;
+    background: {{border}};
+    margin: 4px 8px;
+}
+
+QWidget#windowRoot {
+    background: transparent;
+}
+
+QFrame#windowBody {
+    background-color: {{bg}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_lg}}px;
+}
+
+QFrame#windowBody[maximized="true"] {
+    border-radius: 0px;
+    border: none;
+}
+
+QStackedWidget,
+QStackedWidget > QWidget {
+    background: transparent;
+}
+
+QLabel {
+    background: transparent;
+}
+
+QLabel#pageTitle {
+    font-family: "{{font_serif}}";
+    font-size: {{fs_display}}px;
+    font-weight: 600;
+    color: {{text}};
+}
+
+QLabel#pageSubtitle {
+    color: {{text_secondary}};
+    font-size: {{fs_body}}px;
+}
+
+QLabel#sectionTitle {
+    font-size: {{fs_title}}px;
+    font-weight: 600;
+    color: {{text}};
+}
+
+QLabel#cardTitle {
+    font-size: {{fs_body}}px;
+    font-weight: 600;
+    color: {{text}};
+}
+
+QLabel#caption {
+    color: {{text_tertiary}};
+    font-size: {{fs_caption}}px;
+}
+
+QLabel#secondary {
+    color: {{text_secondary}};
+}
+
+QLabel#mono {
+    font-family: "{{font_mono}}";
+    font-size: {{fs_caption}}px;
+    color: {{text_secondary}};
+}
+
+QScrollArea {
+    background: transparent;
+    border: none;
+}
+
+QScrollArea > QWidget > QWidget {
+    background: transparent;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 2px 2px 2px 0;
+}
+
+QScrollBar::handle:vertical {
+    background: {{border_strong}};
+    border-radius: 4px;
+    min-height: 32px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: {{text_tertiary}};
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+QToolTip {
+    background-color: {{surface}};
+    color: {{text}};
+    border: 1px solid {{border}};
+    border-radius: {{radius_sm}}px;
+    padding: 6px 8px;
+    font-size: {{fs_caption}}px;
+}

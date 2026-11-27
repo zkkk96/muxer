@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Muxer">
+  <title>Muxer</title>
+  <desc>Two streams merging into one, ending in a play mark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E08A6E"/>
+      <stop offset="1" stop-color="#C45F3E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 圆角底板 -->
+  <rect x="0" y="0" width="1024" height="1024" rx="230" ry="230" fill="url(#bg)"/>
+
+  <!-- 两条汇聚流 + 主干 -->
+  <g fill="none" stroke="#FAF9F5" stroke-width="76" stroke-linecap="round">
+    <path d="M220 330 C 400 330, 400 512, 560 512"/>
+    <path d="M220 694 C 400 694, 400 512, 560 512"/>
+    <path d="M560 512 H 660"/>
+  </g>
+
+  <!-- 播放三角 -->
+  <path d="M676 392 L 830 512 L 676 632 Z"
+        fill="#FAF9F5" stroke="#FAF9F5" stroke-width="28" stroke-linejoin="round"/>
+</svg>

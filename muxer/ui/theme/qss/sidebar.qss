@@ -1,0 +1,39 @@
+/* 左侧导航栏 */
+
+QFrame#sidebar {
+    background: transparent;
+    border: none;
+    border-right: 1px solid {{border}};
+}
+
+QLabel#appName {
+    font-family: "{{font_serif}}";
+    font-size: {{fs_title}}px;
+    font-weight: 600;
+    color: {{text}};
+}
+
+QLabel#appTagline {
+    color: {{text_tertiary}};
+    font-size: {{fs_caption}}px;
+}
+
+QFrame#sidebarFooter {
+    background: transparent;
+    border-top: 1px solid {{border}};
+}
+
+QPushButton#footerButton {
+    background: transparent;
+    border: none;
+    border-radius: {{radius_sm}}px;
+    padding: 5px 8px;
+    color: {{text_secondary}};
+    font-size: {{fs_caption}}px;
+    text-align: left;
+}
+
+QPushButton#footerButton:hover {
+    background: {{surface_muted}};
+    color: {{text}};
+}
