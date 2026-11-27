@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "muxer"
-version = "0.8.1"
+version = "0.8.2"
 description = "流媒体下载器：HLS / DASH / FLV，Claude Desktop 风格桌面界面"
 readme = "README.md"
 requires-python = ">=3.10"

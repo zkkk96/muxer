@@ -154,13 +154,15 @@ def main() -> int:
     LOGGER.info("%s %s 启动：%s", APP_NAME, APP_VERSION, APP_DESCRIPTION)
 
     if smoke:
-        QTimer.singleShot(1500, app.quit)
+        # 走与托盘退出相同的收尾路径，验证打包产物能干净退出
+        QTimer.singleShot(1500, window.quit_application)
     elif not config.first_run_completed:
         dialog = OnboardingDialog(config, window)
         dialog.exec()
         window.apply_download_dir(config.download_dir)
 
     exit_code = app.exec()
+    LOGGER.info("%s 已退出，代码 %s", APP_NAME, exit_code)
     if smoke_dir is not None:
         shutil.rmtree(smoke_dir, ignore_errors=True)
     return exit_code

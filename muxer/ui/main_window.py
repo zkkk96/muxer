@@ -3,11 +3,15 @@
 from __future__ import annotations
 
 import logging
+import os
+import threading
+import time
 from pathlib import Path
 
 from PySide6.QtCore import QEasingCurve, QEvent, QPoint, QPropertyAnimation, Qt, QUrl
 from PySide6.QtGui import QColor, QDesktopServices
 from PySide6.QtWidgets import (
+    QApplication,
     QFrame,
     QGraphicsDropShadowEffect,
     QGraphicsOpacityEffect,
@@ -66,6 +70,7 @@ class MainWindow(QWidget):
         self._tray = None
         self._quitting = False
         self._tray_hint_shown = False
+        self._watchdog_started = False
         self._log_store = LogStore(self)
         self.setWindowTitle("Muxer")
         self.setWindowIcon(icons.app_icon())
@@ -286,10 +291,28 @@ class MainWindow(QWidget):
         self._tasks_page.pause_all()
 
     def quit_application(self) -> None:
+        if self._quitting:
+            return
         self._quitting = True
+        self._start_exit_watchdog()
         if self._tray is not None:
             self._tray.hide()
         self.close()
+        app = QApplication.instance()
+        if app is not None:
+            app.quit()
+
+    def _start_exit_watchdog(self) -> None:
+        """兜底：Qt / QtWebEngine 若在退出阶段卡住，强制结束进程。"""
+        if self._watchdog_started:
+            return
+        self._watchdog_started = True
+        threading.Thread(
+            target=_force_exit_after_timeout,
+            args=(10.0,),
+            name="muxer-exit-watchdog",
+            daemon=True,
+        ).start()
 
     def _setup_tray(self, enabled: bool) -> None:
         if not enabled:
@@ -452,16 +475,31 @@ class MainWindow(QWidget):
                 )
             return
 
-        self._quitting = True
+        if not self._quitting:
+            self._quitting = True
+            self._start_exit_watchdog()
         if self._tray is not None:
             self._tray.hide()
+        if self._sniffer_page is not None:
+            self._sniffer_page.release_webengine()
         if self._engine is not None:
             self._engine.shutdown()
             self._engine = None
         if self._log_store is not None:
             self._log_store.close()
+        app = QApplication.instance()
+        if app is not None:
+            app.quit()
         super().closeEvent(event)
 
     def _refresh_theme(self) -> None:
         theme = theme_manager.current()
         self._shadow.setColor(QColor(0, 0, 0, 110 if theme.is_dark else 60))
+
+
+def _force_exit_after_timeout(seconds: float) -> None:
+    """等待正常退出；超时后强制结束，避免残留无窗口进程。"""
+    time.sleep(seconds)
+    LOGGER.warning("退出超时，强制结束进程")
+    logging.shutdown()
+    os._exit(0)

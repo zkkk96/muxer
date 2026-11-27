@@ -4,7 +4,7 @@
 """
 
 APP_NAME = "Muxer"
-APP_VERSION = "0.8.1"
+APP_VERSION = "0.8.2"
 APP_DESCRIPTION = "HLS / DASH / FLV 流媒体下载器"
 
 __all__ = ["APP_NAME", "APP_VERSION", "APP_DESCRIPTION"]

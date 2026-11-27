@@ -395,6 +395,19 @@ class SnifferPage(Page):
         self._back_button.setEnabled(history.canGoBack())
         self._forward_button.setEnabled(history.canGoForward())
 
+    # ---- 退出 ----
+
+    def release_webengine(self) -> None:
+        """窗口关闭前释放 WebEngine 页面与拦截器，帮助进程干净退出。"""
+        if not WEBENGINE_AVAILABLE:
+            return
+        try:
+            self._view.stop()
+            QWebEngineProfile.defaultProfile().setUrlRequestInterceptor(None)
+            self._view.deleteLater()
+        except RuntimeError:
+            pass
+
     # ---- 主题 ----
 
     def _refresh_theme(self) -> None:
